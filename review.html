@@ -194,51 +194,62 @@
             const data = articleData[providerId];
             pageTitle.innerText = data.title;
 
+            // 动态生成蜘蛛网内部链接
+            const allKeys = Object.keys(articleData);
+            const shuffledKeys = allKeys.sort(() => 0.5 - Math.random());
+            const randomPicks = shuffledKeys.slice(0, 5); // 挑 5 个不同的机场
+            
+            let spiderWebItems = randomPicks.map(key => {
+                return \`<li><i class='bx bx-check-circle' style="color:var(--ping-good)"></i> <a href="review.html?id=\${encodeURIComponent(key)}">\${articleData[key].title}</a></li>\`;
+            }).join('');
+            
+            // 补充固定教程链接
+            spiderWebItems += \`
+                <li><i class='bx bx-check-circle' style="color:var(--ping-warn)"></i> <a href="tutorials.html">【小白教程】2026年最新各大平台客户端保姆级配置教程</a></li>
+                <li><i class='bx bx-check-circle' style="color:var(--ping-warn)"></i> <a href="apple_id.html">iOS 必看：美区 Apple ID 免费获取与 Shadowrocket 下载指南</a></li>
+            \`;
+
             // 渲染文章 HTML
-            const html = `
+            const html = \`
                 <div class="review-header">
-                    <h1 class="review-title">${data.title}</h1>
+                    <h1 class="review-title">\${data.title}</h1>
                     <div class="review-meta">
-                        <span><i class='bx bx-calendar'></i> 更新于: ${data.date}</span>
+                        <span><i class='bx bx-calendar'></i> 更新于: \${data.date}</span>
                         <span><i class='bx bx-user'></i> 作者: 评测编辑部</span>
-                        <span><i class='bx bx-bar-chart'></i> 阅读量: ${data.views}</span>
+                        <span><i class='bx bx-bar-chart'></i> 阅读量: \${data.views}</span>
                     </div>
                     
                     <div class="buy-box">
                         <div class="buy-box-info">
-                            <h3>${providerId} 官方直通车</h3>
-                            <p>${data.desc}</p>
-                            ${data.discount ? `<div style="margin-top: 12px; display: inline-flex; align-items: center; background: rgba(245, 158, 11, 0.1); border: 1px dashed #f59e0b; padding: 6px 12px; border-radius: 6px; color: #f59e0b; font-size: 13px;"><i class='bx bxs-discount' style="margin-right: 6px; font-size: 16px;"></i> 新用户专属 8 折优惠码：<strong style="margin-left: 5px; font-family: monospace; font-size: 16px; user-select: all; cursor: pointer; background: rgba(245, 158, 11, 0.2); padding: 2px 6px; border-radius: 4px;" onclick="navigator.clipboard.writeText('${data.discount}').then(() => alert('优惠码 ${data.discount} 已成功复制！'));">${data.discount}</strong> <span style="font-size: 12px; opacity: 0.8; margin-left: 8px;">(点击复制)</span></div>` : ''}
+                            <h3>\${providerId} 官方直通车</h3>
+                            <p>\${data.desc}</p>
+                            \${data.discount ? \`<div style="margin-top: 12px; display: inline-flex; align-items: center; background: rgba(245, 158, 11, 0.1); border: 1px dashed #f59e0b; padding: 6px 12px; border-radius: 6px; color: #f59e0b; font-size: 13px;"><i class='bx bxs-discount' style="margin-right: 6px; font-size: 16px;"></i> 新用户专属优惠码：<strong style="margin-left: 5px; font-family: monospace; font-size: 16px; user-select: all; cursor: pointer; background: rgba(245, 158, 11, 0.2); padding: 2px 6px; border-radius: 4px;" onclick="navigator.clipboard.writeText('\${data.discount}').then(() => alert('优惠码 \${data.discount} 已成功复制！'));">\${data.discount}</strong> <span style="font-size: 12px; opacity: 0.8; margin-left: 8px;">(点击复制)</span></div>\` : ''}
                         </div>
-                        <a href="${data.link}" target="_blank" class="btn-buy">
+                        <a href="\${data.link}" target="_blank" class="btn-buy">
                             前往官网注册 <i class='bx bx-rocket'></i>
                         </a>
                     </div>
                 </div>
 
                 <div class="article-content">
-                    ${data.content}
+                    \${data.content}
                     
                     <div style="text-align: center; margin: 40px 0;">
-                        <a href="${data.link}" target="_blank" class="btn-buy" style="display: inline-flex; font-size: 18px; padding: 15px 40px;">
-                            👉 点击前往 ${providerId} 官网注册使用 👈
+                        <a href="\${data.link}" target="_blank" class="btn-buy" style="display: inline-flex; font-size: 18px; padding: 15px 40px;">
+                            👉 点击前往 \${providerId} 官网注册使用 👈
                         </a>
                     </div>
 
-                    <!-- 强大的内部 SEO 蜘蛛网系统 (蹭热点、强内链) -->
+                    <!-- 强大的内部 SEO 蜘蛛网系统 (全站动态联结) -->
                     <div class="spider-web-links">
                         <h3><i class='bx bx-link'></i> 相关优质机场评测与教程阅读</h3>
                         <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">探索更多同类优质机场，或者学习最新的客户端配置教程：</p>
                         <ul>
-                            <li><i class='bx bx-check-circle' style="color:var(--ping-good)"></i> <a href="review.html?id=光速云">光速云测速报告：10Gbps专线/稳定解锁流媒体的王者</a></li>
-                            <li><i class='bx bx-check-circle' style="color:var(--ping-good)"></i> <a href="review.html?id=全球云">全球云深度评测：主打全地区节点覆盖，跨境出海首选</a></li>
-                            <li><i class='bx bx-check-circle' style="color:var(--ping-good)"></i> <a href="review.html?id=唯兔云">唯兔云2026测速报告：全 IPLC 专线不限速，老用户最爱</a></li>
-                            <li><i class='bx bx-check-circle' style="color:var(--ping-warn)"></i> <a href="#">【小白教程】最新版 Clash Verge Rev 客户端保姆级配置教程</a></li>
-                            <li><i class='bx bx-check-circle' style="color:var(--ping-warn)"></i> <a href="#">iOS 必看：美区 Apple ID 注册与 Shadowrocket 小火箭下载指南</a></li>
+                            \${spiderWebItems}
                         </ul>
                     </div>
                 </div>
-            `;
+            \`;
             root.innerHTML = html;
         });
     </script>

@@ -1,0 +1,30 @@
+name: Z-Blog Daily AI Auto Publish
+
+on:
+  schedule:
+    # 每天 UTC 时间 00:00, 08:00, 16:00 运行 
+    # 对应北京时间大约是每天 08:00, 16:00, 00:00 (一天自动发布3篇)
+    - cron: '0 0,8,16 * * *'
+  workflow_dispatch: # 允许你在 GitHub 网页上手动点击按钮触发运行
+
+jobs:
+  ai-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install axios openai rss-parser
+
+      - name: Run AI Generate & Publish to Z-Blog
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          ZBLOG_USERNAME: ${{ secrets.ZBLOG_USERNAME }}
+          ZBLOG_PASSWORD: ${{ secrets.ZBLOG_PASSWORD }}
+        run: node zblog_auto_ai_publish.js
