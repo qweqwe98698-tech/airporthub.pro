@@ -17,26 +17,32 @@ const openai = new OpenAI({
     apiKey: DEEPSEEK_API_KEY
 });
 
-// 获取热搜词（使用极客公园/V2EX/微博的 RSS，或者免费 API，这里用免费的韩小韩 API + RSS Fallback）
-async function getHotTopic() {
+// 获取热搜词列表（聚合微博、知乎、B站热搜，避免全是无关的社会新闻）
+async function getHotTopics() {
     let topics = [];
+    console.log("正在获取全网各大榜单热搜...");
     try {
-        console.log("正在获取微博热搜...");
-        const res = await axios.get('https://api.vvhan.com/api/hotlist/wbHot', { timeout: 5000 });
-        if (res.data && res.data.success && res.data.data) {
-            topics = res.data.data.slice(0, 15).map(item => item.title);
+        const [wb, zhihu, bili] = await Promise.allSettled([
+            axios.get('https://api.vvhan.com/api/hotlist/wbHot', { timeout: 5000 }),
+            axios.get('https://api.vvhan.com/api/hotlist/zhihuHot', { timeout: 5000 }),
+            axios.get('https://api.vvhan.com/api/hotlist/bili', { timeout: 5000 })
+        ]);
+
+        if (wb.status === 'fulfilled' && wb.value.data && wb.value.data.data) {
+            topics.push(...wb.value.data.data.slice(0, 15).map(item => "[微博] " + item.title));
+        }
+        if (zhihu.status === 'fulfilled' && zhihu.value.data && zhihu.value.data.data) {
+            topics.push(...zhihu.value.data.data.slice(0, 15).map(item => "[知乎] " + item.title));
+        }
+        if (bili.status === 'fulfilled' && bili.value.data && bili.value.data.data) {
+            topics.push(...bili.value.data.data.slice(0, 15).map(item => "[B站] " + item.title));
         }
     } catch (e) {
-        console.log("微博热搜 API 失败，尝试抓取 V2EX 热点...");
-        try {
-            const feed = await parser.parseURL('https://www.v2ex.com/index.xml');
-            topics = feed.items.slice(0, 15).map(item => item.title);
-        } catch(err) {
-            console.log("RSS 抓取失败，使用本地备用热点库...");
-        }
+        console.log("全网热搜 API 请求出现波动...");
     }
 
-    if (topics.length === 0) {
+    if (topics.length < 5) {
+        console.log("抓取失败或数据过少，使用备用科技热点库...");
         topics = [
             "2026年最新 AI 大模型发布，访问受限怎么办？",
             "近期海外流媒体 Netflix 严打跨区，如何解决？",
@@ -47,9 +53,7 @@ async function getHotTopic() {
         ];
     }
     
-    // Shuffle and pick one
-    topics = topics.sort(() => 0.5 - Math.random());
-    return topics[0];
+    return topics;
 }
 
 const historyFile = path.join(__dirname, 'generated_topics.json');
@@ -60,16 +64,15 @@ if (fs.existsSync(historyFile)) {
 
 async function main() {
     console.log("==== 开始生成今日热点 SEO 文章 ====");
-    let topic = await getHotTopic();
+    let allTopics = await getHotTopics();
     
-    let retries = 5;
-    while (generatedTopics.includes(topic) && retries > 0) {
-        console.log(`[${topic}] 已写过，重新获取...`);
-        topic = await getHotTopic();
-        retries--;
-    }
+    // 过滤掉已经写过的话题（粗略匹配）
+    let availableTopics = allTopics.filter(t => {
+        let cleanT = t.replace(/\[.*?\]\s*/, '');
+        return !generatedTopics.includes(cleanT);
+    });
 
-    console.log(`✅ 选定今日热点：${topic}`);
+    if (availableTopics.length === 0) availableTopics = allTopics;
 
     // 获取内部链接（蜘蛛网）
     const articleDataContent = fs.readFileSync(path.join(__dirname, 'js', 'article_data.js'), 'utf8');
@@ -91,17 +94,22 @@ async function main() {
                         </a>`).join('\n');
 
     const prompt = `
-你是一个顶尖的 SEO 内容编辑和网络加速领域的资深专家。
+你是一个顶尖的 SEO 内容编辑和科技领域的资深专家。
 你现在的任务是写一篇“蹭热点”的引流文章，用于发布在名为 AirportHub 的科学上网指南网站上。
 
-【今日突发热点/搜索词】：${topic}
+【当前全网热搜榜单】：
+${availableTopics.join('\n')}
 
-要求：
-1. 标题：必须极具吸引力，包含热点词汇，同时巧妙结合“海外访问”、“网络加速”或“翻墙指南”等痛点。
-2. 导语段落：直接切入这个热点事件，分析事件背后的资讯获取痛点（比如：很多人无法第一时间看到外网新闻、无法流畅使用相关AI工具、或者看海外流媒体卡顿等）。
+你的核心任务：
+1. 【精准选材】：请从上面的热搜榜单中，**只挑选 1 个最具有“科技、数码、AI、外网、海外流媒体、影视、游戏或职场出海”属性的话题**。绝对不要选择“牙痛、车祸、明星出轨、纯社会八卦”这种毫无关联的垃圾热搜！如果不小心选到了垃圾热搜，就算强行写科技也会显得很蠢。如果榜单里全是社会新闻，请你直接自己凭空捏造一个“2026最新科技/AI圈的重磅突发新闻”作为热点。
+
+选定热点后，请围绕它写一篇文章，要求如下：
+1. 标题：必须极具吸引力，包含你选定的热点词汇，同时巧妙结合“海外访问”、“网络加速”或“翻墙指南”等痛点。
+2. 导语段落：直接切入你选定的这个热点事件，深度分析它，然后指出获取此类海外资讯或服务的痛点（比如：很多人无法第一时间看到外网新闻、无法流畅使用相关AI工具、看海外流媒体卡顿等）。
 3. 差异化正文（非常重要！不少于 1000 字）：深度分析这个热点，字数要充实，自然过渡到需要一个强大的网络加速工具（机场）。
 4. 机场推荐：在正文中顺理成章地推荐至少 2 家优质机场（请从这几个名字里随便挑2个：${randomAirports.slice(0,2).join("、")}），并用 100-200 字给每个机场写一段有理有据的夸赞。
 5. 格式要求：直接输出 HTML 代码的内部结构（比如 <h1>, <h2>, <p>），千万不要输出 <html>, <head>, <body> 标签，也不要输出 markdown 的 \`\`\`html 代码块符号，直接输出纯净的标签代码！不要在结尾生成多余的内部链接列表，我会自己拼接。
+注意：不要在正文中输出你选了哪个词的分析过程，直接开始输出文章的 HTML 内容。
 `;
 
     console.log("正在请求 DeepSeek API 撰写长文，这可能需要 1-2 分钟...");
@@ -119,7 +127,7 @@ async function main() {
         content = content.replace(/```html/g, '').replace(/```/g, '').trim();
 
         const titleMatch = content.match(/<h1[^>]*>(.*?)<\/h1>/);
-        const title = titleMatch ? titleMatch[1].replace(/<[^>]+>/g, '') : `${topic}：海外前沿资讯获取与高速网络加速指南`;
+        const title = titleMatch ? titleMatch[1].replace(/<[^>]+>/g, '') : `海外前沿资讯获取与高速网络加速指南`;
         const cleanContent = content.replace(/<h1[^>]*>.*?<\/h1>/, ''); // Remove h1 from body to put it in template
 
         const timestamp = Date.now();
@@ -168,7 +176,8 @@ async function main() {
         fs.writeFileSync(path.join(__dirname, 'articles.html'), articlesHtml, 'utf8');
         console.log(`✅ 已将新文章挂载至 articles.html 列表`);
 
-        generatedTopics.push(topic);
+        // We can't strictly track generated topics since AI picked it, but we can save the title it generated
+        generatedTopics.push(title);
         fs.writeFileSync(historyFile, JSON.stringify(generatedTopics));
 
     } catch (err) {
