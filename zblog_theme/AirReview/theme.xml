@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<theme version="php">
+  <id>AirReview</id>
+  <name>硬核看板主题</name>
+  <url>https://jichangpingce.club</url>
+  <note>为 AIRPORT REVIEWS 独家定制的极简高转化主题</note>
+  <description>黑科技数据看板主题</description>
+  <path></path>
+  <include>include.php</include>
+  <level>1</level>
+  <author>
+    <name>Yexiodi98K</name>
+    <email></email>
+    <url></url>
+  </author>
+  <source>
+    <name></name>
+    <email></email>
+    <url></url>
+  </source>
+  <adapted>173000</adapted>
+  <version>1.0</version>
+  <pubdate>2026-06-16</pubdate>
+  <modified>2026-06-16</modified>
+  <price>0</price>
+  <advanced>
+    <dependency></dependency>
+    <conflict></conflict>
+    <rewritefunctions></rewritefunctions>
+  </advanced>
+</theme>

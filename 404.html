@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 节点未找到 - AirportHub</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        body { display: flex; align-items: center; justify-content: center; height: 100vh; background: var(--bg-dark); margin: 0; font-family: 'Inter', system-ui, sans-serif; overflow: hidden; }
+        .error-container { text-align: center; z-index: 10; position: relative; }
+        .error-code { font-size: 120px; font-weight: 900; background: linear-gradient(to right, #a855f7, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; line-height: 1; letter-spacing: -5px; }
+        .error-msg { font-size: 24px; color: #fff; margin: 20px 0; }
+        .error-desc { color: var(--text-muted); font-size: 16px; margin-bottom: 40px; max-width: 400px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+        .btn-home { display: inline-flex; align-items: center; gap: 10px; background: #3b82f6; color: #fff; text-decoration: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; font-size: 16px; transition: 0.3s; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
+        .btn-home:hover { background: #2563eb; transform: translateY(-3px); box-shadow: 0 15px 25px rgba(59, 130, 246, 0.4); }
+        
+        /* Cyberpunk Glitch Background */
+        .bg-grid { position: absolute; width: 200vw; height: 200vh; top: -50%; left: -50%; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; transform: perspective(500px) rotateX(60deg); animation: moveGrid 20s linear infinite; z-index: 1; }
+        @keyframes moveGrid { 0% { transform: perspective(500px) rotateX(60deg) translateY(0); } 100% { transform: perspective(500px) rotateX(60deg) translateY(40px); } }
+        .glow { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="glow"></div>
+    
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-msg">请求被 GFW 拦截 或 节点已失效</h2>
+        <p class="error-desc">你访问的加密隧道可能已经断开，或者该评测文章已被转移到了更安全的服务器。别担心，我们的主力专线依然畅通无阻。</p>
+        <a href="index.html" class="btn-home">
+            <i class='bx bx-radar'></i> 返回数据看板，重新连接
+        </a>
+    </div>
+
+    <!-- Auto Redirect -->
+    <script>
+        let countdown = 10;
+        const desc = document.querySelector('.error-desc');
+        const originalText = desc.innerText;
+        
+        setInterval(() => {
+            countdown--;
+            if(countdown > 0) {
+                desc.innerHTML = originalText + \`<br><br><span style="color:#a855f7;">\${countdown} 秒后自动重新路由至首页...</span>\`;
+            } else {
+                window.location.href = 'index.html';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

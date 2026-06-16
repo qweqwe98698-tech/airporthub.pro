@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顶尖设计与二次元 - AirportHub</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        .page-container { padding: 30px; max-width: 1200px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; margin-top: 30px; }
+        .ai-dev-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 25px; transition: 0.3s; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+        .ai-dev-card:hover { border-color: #ec4899; box-shadow: 0 10px 20px rgba(0,0,0, 0.2); transform: translateY(-2px); }
+        .ai-dev-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: #ec4899; opacity: 0; transition: 0.3s; }
+        .ai-dev-card:hover::before { opacity: 1; }
+        .ai-dev-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .ai-dev-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+        .ai-dev-title h3 { font-size: 20px; color: #fff; margin-bottom: 5px; }
+        .ai-dev-title span { font-size: 12px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 10px; }
+        .ai-dev-desc { color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
+        .env-req { padding: 10px 15px; border-radius: 4px; margin-bottom: 20px; font-size: 13px; border-left: 3px solid; }
+        .ai-dev-actions { display: flex; gap: 10px; }
+        .btn-visit { flex-grow: 1; color: white; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: 0.2s; }
+        .btn-visit:hover { filter: brightness(1.1); }
+        .btn-proxy { flex-grow: 1; background: transparent; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: 0.2s; border: 1px solid; }
+        .btn-proxy:hover { background: rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+                <aside class="sidebar">
+            <div class="logo">
+                <i class='bx bx-globe'></i>
+                <span>AirportHub</span>
+            </div>
+            
+            <nav class="sidebar-nav" style="margin-top: 30px; padding: 0 15px;">
+                
+                <a href="index.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-data' style="font-size: 20px; color: inherit;"></i> 数据看板
+                </a>
+                <a href="articles.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); background: transparent; text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-news' style="font-size: 20px; color: inherit;"></i> 最新文章
+                </a>
+                <a href="tutorials.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-book-open' style="font-size: 20px; color: inherit;"></i> 客户端教程
+                </a>
+                <a href="apple_id.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-user-circle' style="font-size: 20px; color: inherit;"></i> 免费 Apple ID
+                </a>
+                <a href="free_nodes.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-wifi' style="font-size: 20px; color: inherit;"></i> 免费节点订阅
+                </a>
+                <a href="ai_tools.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-bot' style="font-size: 20px; color: #a855f7;"></i> AI 工具宝盒
+                </a>
+                <a href="ai_dev.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-code-alt' style="font-size: 20px; color: #8b5cf6;"></i> AI 编程开发工具
+                </a>
+                <a href="social_media.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-world' style="font-size: 20px; color: #0ea5e9;"></i> 海外社交媒体
+                </a>
+                <a href="ecommerce.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-store' style="font-size: 20px; color: #f59e0b;"></i> 跨境电商导航
+                </a>
+                <a href="crypto.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-bitcoin' style="font-size: 20px; color: #10b981;"></i> 数字货币导航
+                </a>
+                <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 15px 0;">
+                <a href="streaming.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-movie-play' style="font-size: 20px; color: #E50914;"></i> 全球流媒体影视
+                </a>
+                <a href="gaming.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-game' style="font-size: 20px; color: #10b981;"></i> 国际游戏与电竞
+                </a>
+                <a href="design.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-palette' style="font-size: 20px; color: #ec4899;"></i> 顶尖设计与二次元
+                </a>
+                <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 15px 0;">
+                <a href="about.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-info-circle' style="font-size: 20px; color: #a855f7;"></i> 关于本站与防骗声明
+                </a>
+
+</nav>
+
+            <div class="filter-group" style="margin-top: 20px;">
+                <h3>节点筛选 & 参数</h3>
+                
+                <div class="filter-section">
+                    <h4>服务商类型 <i class='bx bx-chevron-up'></i></h4>
+                    <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="IPLC"> <span class="checkmark"></span> IPLC 专线</label>
+                    <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="IEPL" checked> <span class="checkmark"></span> IEPL 专线</label>
+                    <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="中转"> <span class="checkmark"></span> BGP 中转</label>
+                </div>
+
+                <div class="filter-section">
+                    <h4>支持协议 <i class='bx bx-chevron-up'></i></h4>
+                    <div class="grid-2-col">
+                        <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="Trojan"> <span class="checkmark"></span> Trojan</label>
+                        <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="Vless" checked> <span class="checkmark"></span> Vless</label>
+                        <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="SS"> <span class="checkmark"></span> SS/SSR</label>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h4>流媒体解锁 <i class='bx bx-chevron-up'></i></h4>
+                    <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="流媒体" checked> <span class="checkmark"></span> Netflix 完美解锁</label>
+                    <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="AI" checked> <span class="checkmark"></span> ChatGPT 原生IP</label>
+                    <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="海外" checked> <span class="checkmark"></span> TikTok 零封控</label>
+                </div>
+
+                <div class="filter-section">
+                    <h4>最大可接受价格 <i class='bx bx-chevron-up'></i></h4>
+                    <p class="price-label">最高: ¥<span id="price-val">150</span> / 月</p>
+                    <input type="range" id="priceFilter" min="9" max="150" value="150" class="slider">
+                </div>
+                
+                <div class="filter-section">
+                    <h4>运行状态 <i class='bx bx-chevron-up'></i></h4>
+                    <label class="custom-checkbox"><input type="checkbox" checked> <span class="checkmark"></span> 在线可用</label>
+                </div>
+            </div>
+        
+
+        <div class="ad-banner" style="margin-top: auto; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px; margin-left: 15px; margin-right: 15px; margin-bottom: 20px; border: 1px solid var(--border);">
+    <h4 style="color: #f43f5e; margin-bottom: 5px; font-size: 14px;">🔥 站长专属神仙机场</h4>
+    <p style="color: var(--text-muted); font-size: 12px; margin-bottom: 5px;">结账输入专属 8 折优惠码：<strong style="color: #f43f5e; user-select: all;">AMM</strong></p>
+    <p style="color: var(--text-muted); font-size: 12px; margin-bottom: 10px;">防跑路稳定首选，全网测速第一。</p>
+    <button onclick="window.location.href=\'index.html\'" style="width: 100%; padding: 8px; background: #f43f5e; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">立即抢购专属节点</button>
+</div>
+</aside>
+        <main class="main-content" style="overflow-y: auto;">
+            <header class="topbar">
+                <nav class="nav-links">
+                    <a href="index.html">看板 (Dashboard)</a>
+                    <a href="design.html" class="active">顶尖设计与二次元</a>
+                </nav>
+            </header>
+            <div class="page-container">
+                <div class="page-header" style="text-align: center; margin-bottom: 40px; margin-top: 20px;">
+                    <i class='bx bx-palette' style="font-size: 60px; color: #ec4899; margin-bottom: 15px;"></i>
+                    <h1 style="font-size: 32px; margin-bottom: 15px;">顶尖设计与二次元</h1>
+                    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.6;">设计师的灵感库与老司机的二次元圣地。超清大图/画集/动图需要极强的高并发下载能力，我们为你准备了加载不卡顿的大带宽专线。</p>
+                </div>
+                <div class="grid">
+<div class="ai-dev-card">
+<div class="ai-dev-header">
+<div class="ai-dev-icon" style="color: #fff; background: #0096fa; border: 1px solid rgba(255,255,255,0.1);"><i class="bx-paint"></i></div>
+<div class="ai-dev-title">
+<h3>Pixiv</h3>
+<span>顶尖设计与二次元必选平台</span>
+</div>
+</div>
+<p class="ai-dev-desc">在这个对网络要求极高的平台中，普通的梯子极易导致无法挽回的体验灾难。请务必查看我们的网络解锁与优化指南。</p>
+<div class="env-req strict" style="border-left-color: #0096fa; background: rgba(255,255,255,0.02);">
+网络要求：<span style="color: #0096fa;">极速/原生/低延迟 IP</span><br>
+为了获得 100% 的无阻碍体验，必须配置对应的专线节点，拒绝劣质线路。
+</div>
+<div class="ai-dev-actions" style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 10px;">
+<a href="https://www.pixiv.net/" target="_blank" class="btn-visit" style="background: #0096fa; flex: 1; text-align: center; color: #fff;">访问 Pixiv</a>
+<a href="tutorial_design_pixiv.html" class="btn-proxy" style="flex: 1; border-color: #0096fa; color: #0096fa; text-align: center; background: rgba(255,255,255,0.05);">📖 专线/解锁攻略</a>
+</div>
+<a href="index.html" class="btn-proxy" style="width: 100%; text-align: center; box-sizing: border-box; border-color: var(--border);">获取极致测速第一名节点</a>
+</div>
+</div>
+<div class="ai-dev-card">
+<div class="ai-dev-header">
+<div class="ai-dev-icon" style="color: #fff; background: #E60023; border: 1px solid rgba(255,255,255,0.1);"><i class="bxl-pinterest"></i></div>
+<div class="ai-dev-title">
+<h3>Pinterest</h3>
+<span>顶尖设计与二次元必选平台</span>
+</div>
+</div>
+<p class="ai-dev-desc">在这个对网络要求极高的平台中，普通的梯子极易导致无法挽回的体验灾难。请务必查看我们的网络解锁与优化指南。</p>
+<div class="env-req medium" style="border-left-color: #E60023; background: rgba(255,255,255,0.02);">
+网络要求：<span style="color: #E60023;">极速/原生/低延迟 IP</span><br>
+为了获得 100% 的无阻碍体验，必须配置对应的专线节点，拒绝劣质线路。
+</div>
+<div class="ai-dev-actions" style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 10px;">
+<a href="https://www.pinterest.com/" target="_blank" class="btn-visit" style="background: #E60023; flex: 1; text-align: center; color: #fff;">访问 Pinterest</a>
+<a href="tutorial_design_pinterest.html" class="btn-proxy" style="flex: 1; border-color: #E60023; color: #E60023; text-align: center; background: rgba(255,255,255,0.05);">📖 专线/解锁攻略</a>
+</div>
+<a href="index.html" class="btn-proxy" style="width: 100%; text-align: center; box-sizing: border-box; border-color: var(--border);">获取极致测速第一名节点</a>
+</div>
+</div>
+<div class="ai-dev-card">
+<div class="ai-dev-header">
+<div class="ai-dev-icon" style="color: #fff; background: #1769ff; border: 1px solid rgba(255,255,255,0.1);"><i class="bxl-behance"></i></div>
+<div class="ai-dev-title">
+<h3>Behance</h3>
+<span>顶尖设计与二次元必选平台</span>
+</div>
+</div>
+<p class="ai-dev-desc">在这个对网络要求极高的平台中，普通的梯子极易导致无法挽回的体验灾难。请务必查看我们的网络解锁与优化指南。</p>
+<div class="env-req medium" style="border-left-color: #1769ff; background: rgba(255,255,255,0.02);">
+网络要求：<span style="color: #1769ff;">极速/原生/低延迟 IP</span><br>
+为了获得 100% 的无阻碍体验，必须配置对应的专线节点，拒绝劣质线路。
+</div>
+<div class="ai-dev-actions" style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 10px;">
+<a href="https://www.behance.net/" target="_blank" class="btn-visit" style="background: #1769ff; flex: 1; text-align: center; color: #fff;">访问 Behance</a>
+<a href="tutorial_design_behance.html" class="btn-proxy" style="flex: 1; border-color: #1769ff; color: #1769ff; text-align: center; background: rgba(255,255,255,0.05);">📖 专线/解锁攻略</a>
+</div>
+<a href="index.html" class="btn-proxy" style="width: 100%; text-align: center; box-sizing: border-box; border-color: var(--border);">获取极致测速第一名节点</a>
+</div>
+</div>
+<div class="ai-dev-card">
+<div class="ai-dev-header">
+<div class="ai-dev-icon" style="color: #fff; background: #13AFF0; border: 1px solid rgba(255,255,255,0.1);"><i class="bx-brush"></i></div>
+<div class="ai-dev-title">
+<h3>ArtStation</h3>
+<span>顶尖设计与二次元必选平台</span>
+</div>
+</div>
+<p class="ai-dev-desc">在这个对网络要求极高的平台中，普通的梯子极易导致无法挽回的体验灾难。请务必查看我们的网络解锁与优化指南。</p>
+<div class="env-req strict" style="border-left-color: #13AFF0; background: rgba(255,255,255,0.02);">
+网络要求：<span style="color: #13AFF0;">极速/原生/低延迟 IP</span><br>
+为了获得 100% 的无阻碍体验，必须配置对应的专线节点，拒绝劣质线路。
+</div>
+<div class="ai-dev-actions" style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 10px;">
+<a href="https://www.artstation.com/" target="_blank" class="btn-visit" style="background: #13AFF0; flex: 1; text-align: center; color: #fff;">访问 ArtStation</a>
+<a href="tutorial_design_artstation.html" class="btn-proxy" style="flex: 1; border-color: #13AFF0; color: #13AFF0; text-align: center; background: rgba(255,255,255,0.05);">📖 专线/解锁攻略</a>
+</div>
+<a href="index.html" class="btn-proxy" style="width: 100%; text-align: center; box-sizing: border-box; border-color: var(--border);">获取极致测速第一名节点</a>
+</div>
+</div>
+<div class="ai-dev-card">
+<div class="ai-dev-header">
+<div class="ai-dev-icon" style="color: #fff; background: #F24E1E; border: 1px solid rgba(255,255,255,0.1);"><i class="bxl-figma"></i></div>
+<div class="ai-dev-title">
+<h3>Figma</h3>
+<span>顶尖设计与二次元必选平台</span>
+</div>
+</div>
+<p class="ai-dev-desc">在这个对网络要求极高的平台中，普通的梯子极易导致无法挽回的体验灾难。请务必查看我们的网络解锁与优化指南。</p>
+<div class="env-req medium" style="border-left-color: #F24E1E; background: rgba(255,255,255,0.02);">
+网络要求：<span style="color: #F24E1E;">极速/原生/低延迟 IP</span><br>
+为了获得 100% 的无阻碍体验，必须配置对应的专线节点，拒绝劣质线路。
+</div>
+<div class="ai-dev-actions" style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 10px;">
+<a href="https://www.figma.com/" target="_blank" class="btn-visit" style="background: #F24E1E; flex: 1; text-align: center; color: #fff;">访问 Figma</a>
+<a href="tutorial_design_figma.html" class="btn-proxy" style="flex: 1; border-color: #F24E1E; color: #F24E1E; text-align: center; background: rgba(255,255,255,0.05);">📖 专线/解锁攻略</a>
+</div>
+<a href="index.html" class="btn-proxy" style="width: 100%; text-align: center; box-sizing: border-box; border-color: var(--border);">获取极致测速第一名节点</a>
+</div>
+</div>
+<div class="ai-dev-card">
+<div class="ai-dev-header">
+<div class="ai-dev-icon" style="color: #fff; background: #666666; border: 1px solid rgba(255,255,255,0.1);"><i class="bx-bot"></i></div>
+<div class="ai-dev-title">
+<h3>Midjourney</h3>
+<span>顶尖设计与二次元必选平台</span>
+</div>
+</div>
+<p class="ai-dev-desc">在这个对网络要求极高的平台中，普通的梯子极易导致无法挽回的体验灾难。请务必查看我们的网络解锁与优化指南。</p>
+<div class="env-req medium" style="border-left-color: #666666; background: rgba(255,255,255,0.02);">
+网络要求：<span style="color: #666666;">极速/原生/低延迟 IP</span><br>
+为了获得 100% 的无阻碍体验，必须配置对应的专线节点，拒绝劣质线路。
+</div>
+<div class="ai-dev-actions" style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 10px;">
+<a href="https://www.midjourney.com/" target="_blank" class="btn-visit" style="background: #666666; flex: 1; text-align: center; color: #fff;">访问 Midjourney</a>
+<a href="tutorial_design_midjourney.html" class="btn-proxy" style="flex: 1; border-color: #666666; color: #666666; text-align: center; background: rgba(255,255,255,0.05);">📖 专线/解锁攻略</a>
+</div>
+<a href="index.html" class="btn-proxy" style="width: 100%; text-align: center; box-sizing: border-box; border-color: var(--border);">获取极致测速第一名节点</a>
+</div>
+</div>
+<div class="ai-dev-card">
+<div class="ai-dev-header">
+<div class="ai-dev-icon" style="color: #fff; background: #2b90d9; border: 1px solid rgba(255,255,255,0.1);"><i class="bx-magnet"></i></div>
+<div class="ai-dev-title">
+<h3>Nyaa</h3>
+<span>顶尖设计与二次元必选平台</span>
+</div>
+</div>
+<p class="ai-dev-desc">在这个对网络要求极高的平台中，普通的梯子极易导致无法挽回的体验灾难。请务必查看我们的网络解锁与优化指南。</p>
+<div class="env-req strict" style="border-left-color: #2b90d9; background: rgba(255,255,255,0.02);">
+网络要求：<span style="color: #2b90d9;">极速/原生/低延迟 IP</span><br>
+为了获得 100% 的无阻碍体验，必须配置对应的专线节点，拒绝劣质线路。
+</div>
+<div class="ai-dev-actions" style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 10px;">
+<a href="https://nyaa.si/" target="_blank" class="btn-visit" style="background: #2b90d9; flex: 1; text-align: center; color: #fff;">访问 Nyaa</a>
+<a href="tutorial_design_nyaa.html" class="btn-proxy" style="flex: 1; border-color: #2b90d9; color: #2b90d9; text-align: center; background: rgba(255,255,255,0.05);">📖 专线/解锁攻略</a>
+</div>
+<a href="index.html" class="btn-proxy" style="width: 100%; text-align: center; box-sizing: border-box; border-color: var(--border);">获取极致测速第一名节点</a>
+</div>
+</div>
+<div class="ai-dev-card">
+<div class="ai-dev-header">
+<div class="ai-dev-icon" style="color: #fff; background: #0059c1; border: 1px solid rgba(255,255,255,0.1);"><i class="bx-cart-alt"></i></div>
+<div class="ai-dev-title">
+<h3>DLsite</h3>
+<span>顶尖设计与二次元必选平台</span>
+</div>
+</div>
+<p class="ai-dev-desc">在这个对网络要求极高的平台中，普通的梯子极易导致无法挽回的体验灾难。请务必查看我们的网络解锁与优化指南。</p>
+<div class="env-req medium" style="border-left-color: #0059c1; background: rgba(255,255,255,0.02);">
+网络要求：<span style="color: #0059c1;">极速/原生/低延迟 IP</span><br>
+为了获得 100% 的无阻碍体验，必须配置对应的专线节点，拒绝劣质线路。
+</div>
+<div class="ai-dev-actions" style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 10px;">
+<a href="https://www.dlsite.com/" target="_blank" class="btn-visit" style="background: #0059c1; flex: 1; text-align: center; color: #fff;">访问 DLsite</a>
+<a href="tutorial_design_dlsite.html" class="btn-proxy" style="flex: 1; border-color: #0059c1; color: #0059c1; text-align: center; background: rgba(255,255,255,0.05);">📖 专线/解锁攻略</a>
+</div>
+<a href="index.html" class="btn-proxy" style="width: 100%; text-align: center; box-sizing: border-box; border-color: var(--border);">获取极致测速第一名节点</a>
+</div>
+</div>
+<div class="ai-dev-card">
+<div class="ai-dev-header">
+<div class="ai-dev-icon" style="color: #fff; background: #05cc47; border: 1px solid rgba(255,255,255,0.1);"><i class="bx-droplet"></i></div>
+<div class="ai-dev-title">
+<h3>DeviantArt</h3>
+<span>顶尖设计与二次元必选平台</span>
+</div>
+</div>
+<p class="ai-dev-desc">在这个对网络要求极高的平台中，普通的梯子极易导致无法挽回的体验灾难。请务必查看我们的网络解锁与优化指南。</p>
+<div class="env-req medium" style="border-left-color: #05cc47; background: rgba(255,255,255,0.02);">
+网络要求：<span style="color: #05cc47;">极速/原生/低延迟 IP</span><br>
+为了获得 100% 的无阻碍体验，必须配置对应的专线节点，拒绝劣质线路。
+</div>
+<div class="ai-dev-actions" style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 10px;">
+<a href="https://www.deviantart.com/" target="_blank" class="btn-visit" style="background: #05cc47; flex: 1; text-align: center; color: #fff;">访问 DeviantArt</a>
+<a href="tutorial_design_deviantart.html" class="btn-proxy" style="flex: 1; border-color: #05cc47; color: #05cc47; text-align: center; background: rgba(255,255,255,0.05);">📖 专线/解锁攻略</a>
+</div>
+<a href="index.html" class="btn-proxy" style="width: 100%; text-align: center; box-sizing: border-box; border-color: var(--border);">获取极致测速第一名节点</a>
+</div>
+</div>
+<div class="ai-dev-card">
+<div class="ai-dev-header">
+<div class="ai-dev-icon" style="color: #fff; background: #1AB7EA; border: 1px solid rgba(255,255,255,0.1);"><i class="bxl-vimeo"></i></div>
+<div class="ai-dev-title">
+<h3>Vimeo</h3>
+<span>顶尖设计与二次元必选平台</span>
+</div>
+</div>
+<p class="ai-dev-desc">在这个对网络要求极高的平台中，普通的梯子极易导致无法挽回的体验灾难。请务必查看我们的网络解锁与优化指南。</p>
+<div class="env-req strict" style="border-left-color: #1AB7EA; background: rgba(255,255,255,0.02);">
+网络要求：<span style="color: #1AB7EA;">极速/原生/低延迟 IP</span><br>
+为了获得 100% 的无阻碍体验，必须配置对应的专线节点，拒绝劣质线路。
+</div>
+<div class="ai-dev-actions" style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 10px;">
+<a href="https://vimeo.com/" target="_blank" class="btn-visit" style="background: #1AB7EA; flex: 1; text-align: center; color: #fff;">访问 Vimeo</a>
+<a href="tutorial_design_vimeo.html" class="btn-proxy" style="flex: 1; border-color: #1AB7EA; color: #1AB7EA; text-align: center; background: rgba(255,255,255,0.05);">📖 专线/解锁攻略</a>
+</div>
+<a href="index.html" class="btn-proxy" style="width: 100%; text-align: center; box-sizing: border-box; border-color: var(--border);">获取极致测速第一名节点</a>
+</div>
+</div>
+<div class="ai-dev-card">
+<div class="ai-dev-header">
+<div class="ai-dev-icon" style="color: #fff; background: #FF424D; border: 1px solid rgba(255,255,255,0.1);"><i class="bxl-patreon"></i></div>
+<div class="ai-dev-title">
+<h3>Patreon</h3>
+<span>顶尖设计与二次元必选平台</span>
+</div>
+</div>
+<p class="ai-dev-desc">在这个对网络要求极高的平台中，普通的梯子极易导致无法挽回的体验灾难。请务必查看我们的网络解锁与优化指南。</p>
+<div class="env-req medium" style="border-left-color: #FF424D; background: rgba(255,255,255,0.02);">
+网络要求：<span style="color: #FF424D;">极速/原生/低延迟 IP</span><br>
+为了获得 100% 的无阻碍体验，必须配置对应的专线节点，拒绝劣质线路。
+</div>
+<div class="ai-dev-actions" style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 10px;">
+<a href="https://www.patreon.com/" target="_blank" class="btn-visit" style="background: #FF424D; flex: 1; text-align: center; color: #fff;">访问 Patreon</a>
+<a href="tutorial_design_patreon.html" class="btn-proxy" style="flex: 1; border-color: #FF424D; color: #FF424D; text-align: center; background: rgba(255,255,255,0.05);">📖 专线/解锁攻略</a>
+</div>
+<a href="index.html" class="btn-proxy" style="width: 100%; text-align: center; box-sizing: border-box; border-color: var(--border);">获取极致测速第一名节点</a>
+</div>
+</div>
+<div class="ai-dev-card">
+<div class="ai-dev-header">
+<div class="ai-dev-icon" style="color: #fff; background: #000000; border: 1px solid rgba(255,255,255,0.1);"><i class="bx-shopping-bag"></i></div>
+<div class="ai-dev-title">
+<h3>Gumroad</h3>
+<span>顶尖设计与二次元必选平台</span>
+</div>
+</div>
+<p class="ai-dev-desc">在这个对网络要求极高的平台中，普通的梯子极易导致无法挽回的体验灾难。请务必查看我们的网络解锁与优化指南。</p>
+<div class="env-req medium" style="border-left-color: #000000; background: rgba(255,255,255,0.02);">
+网络要求：<span style="color: #000000;">极速/原生/低延迟 IP</span><br>
+为了获得 100% 的无阻碍体验，必须配置对应的专线节点，拒绝劣质线路。
+</div>
+<div class="ai-dev-actions" style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 10px;">
+<a href="https://gumroad.com/" target="_blank" class="btn-visit" style="background: #000000; flex: 1; text-align: center; color: #fff;">访问 Gumroad</a>
+<a href="tutorial_design_gumroad.html" class="btn-proxy" style="flex: 1; border-color: #000000; color: #000000; text-align: center; background: rgba(255,255,255,0.05);">📖 专线/解锁攻略</a>
+</div>
+<a href="index.html" class="btn-proxy" style="width: 100%; text-align: center; box-sizing: border-box; border-color: var(--border);">获取极致测速第一名节点</a>
+</div>
+</div>
+
+</div>
+</div>
+
+            <!-- Site Footer -->
+            <footer class="site-footer" style="margin-top: 50px; padding: 40px 20px; border-top: 1px solid var(--border); background: var(--surface); text-align: center;">
+                <div style="max-width: 1000px; margin: 0 auto;">
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px; line-height: 1.6;">
+                        <strong>关于 AirportHub</strong><br>
+                        我们致力于提供最客观、中立的机场评测与科学上网技术指南。所有数据基于真实 7x24 小时节点网络监控与业务压测，为您过滤跑路机场，挑选高质量原生 IP 与网络专线。
+                    </p>
+                    
+                    <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                        <a href="sitemap.xml" target="_blank" style="color: #a855f7; text-decoration: none; font-size: 14px; transition: 0.2s;"><i class='bx bx-map-alt'></i> 网站地图 (Sitemap)</a>
+                        <a href="about.html" style="color: #a855f7; text-decoration: none; font-size: 14px; transition: 0.2s;"><i class='bx bx-shield-quarter'></i> 隐私政策</a>
+                        <a href="about.html" style="color: #a855f7; text-decoration: none; font-size: 14px; transition: 0.2s;"><i class='bx bx-error-circle'></i> 免责声明</a>
+                    </div>
+
+                    <div style="margin-bottom: 25px; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px dashed rgba(255,255,255,0.1);">
+                        <strong style="color: #fff; font-size: 14px; margin-bottom: 10px; display: block;"><i class='bx bx-link'></i> 友情链接</strong>
+                        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                            <!-- rel="noopener" prevents tab nabbing but does NOT add nofollow, so link juice/weight is shared with these sites -->
+                            <a href="https://clashwiki.cc/" target="_blank" rel="noopener" style="color: #3b82f6; text-decoration: none; font-size: 14px; transition: 0.2s; font-weight: 500;">机场推荐科学上网教程</a>
+                            <a href="https://jichangxuanze.com/" target="_blank" rel="noopener" style="color: #3b82f6; text-decoration: none; font-size: 14px; transition: 0.2s; font-weight: 500;">高性价比机场推荐指南</a>
+                        </div>
+                    </div>
+                    
+                    <p style="color: #6b7280; font-size: 13px; margin: 0;">
+                        &copy; 2026 AirportHub. All Rights Reserved. 本站内容仅供网络架构研究与学习，请严格遵守所在地法律法规。
+                    </p>
+                </div>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
