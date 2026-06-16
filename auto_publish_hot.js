@@ -84,7 +84,11 @@ async function main() {
     availableAirports = availableAirports.sort(() => 0.5 - Math.random());
     const randomAirports = availableAirports.slice(0, 4);
     
-    let internalLinksHtml = randomAirports.map(a => `<li><a href="review.html?id=${encodeURIComponent(a)}">🔥 深度评测：2026年 ${a} 最新节点测速与体验报告</a></li>`).join('\n');
+    const internalLinksHtml = randomAirports.map(a => `
+                        <a href="review.html?id=${encodeURIComponent(a)}">
+                            <i class='bx bx-star'></i>
+                            <span>🔥 深度评测：2026年 ${a} 最新节点测速</span>
+                        </a>`).join('\n');
 
     const prompt = `
 你是一个顶尖的 SEO 内容编辑和网络加速领域的资深专家。
@@ -97,11 +101,7 @@ async function main() {
 2. 导语段落：直接切入这个热点事件，分析事件背后的资讯获取痛点（比如：很多人无法第一时间看到外网新闻、无法流畅使用相关AI工具、或者看海外流媒体卡顿等）。
 3. 差异化正文（非常重要！不少于 1000 字）：深度分析这个热点，字数要充实，自然过渡到需要一个强大的网络加速工具（机场）。
 4. 机场推荐：在正文中顺理成章地推荐至少 2 家优质机场（请从这几个名字里随便挑2个：${randomAirports.slice(0,2).join("、")}），并用 100-200 字给每个机场写一段有理有据的夸赞。
-5. 蜘蛛网内链：在文章结尾，必须加上一个 H3 标题“相关优质机场评测推荐”，然后原封不动地输出以下 HTML 列表（不要做任何修改）：
-<ul>
-${internalLinksHtml}
-</ul>
-6. 格式要求：直接输出 HTML 代码的内部结构（比如 <h1>, <h2>, <p>），千万不要输出 <html>, <head>, <body> 标签，也不要输出 markdown 的 \`\`\`html 代码块符号，直接输出纯净的标签代码！
+5. 格式要求：直接输出 HTML 代码的内部结构（比如 <h1>, <h2>, <p>），千万不要输出 <html>, <head>, <body> 标签，也不要输出 markdown 的 \`\`\`html 代码块符号，直接输出纯净的标签代码！不要在结尾生成多余的内部链接列表，我会自己拼接。
 `;
 
     console.log("正在请求 DeepSeek API 撰写长文，这可能需要 1-2 分钟...");
@@ -132,10 +132,13 @@ ${internalLinksHtml}
         
         // Replace Title
         finalHtml = finalHtml.replace(/<title>.*?<\/title>/, `<title>${title} - AirportHub 官网</title>`);
-        finalHtml = finalHtml.replace(/<h1 class="article-title">.*?<\/h1>/, `<h1 class="article-title">${title}</h1>`);
+        finalHtml = finalHtml.replace(/<div class="article-header">\s*<h1>.*?<\/h1>/, `<div class="article-header">\n                    <h1>${title}</h1>`);
         
-        // Replace Content
-        finalHtml = finalHtml.replace(/<div class="article-content">[\s\S]*?(<\/div>\s*<\/main>)/, `<div class="article-content">\n${cleanContent}\n$1`);
+        // Replace Content (Replace everything inside <div class="article-body"> up to the spider-web div)
+        finalHtml = finalHtml.replace(/<div class="article-body">[\s\S]*?<!-- SEO 内部蜘蛛网系统 -->/, `<div class="article-body">\n${cleanContent}\n                </div>\n\n                <!-- SEO 内部蜘蛛网系统 -->`);
+        
+        // Replace Spider Web Links
+        finalHtml = finalHtml.replace(/<div class="spider-web-grid">[\s\S]*?<\/div>\s*<\/div>/, `<div class="spider-web-grid">\n${internalLinksHtml}\n                    </div>\n                </div>`);
         
         // Ensure Domain Branding
         finalHtml = finalHtml.replace(/AIRPORT REVIEWS/g, "AirportHub");
