@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix 严打跨区，国内用户如何用“原生IP”保住账号？2026终极自救指南 - AirportHub 官网</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .article-read-container { max-width: 800px; margin: 40px auto; background: var(--bg-card); padding: 40px; border-radius: 12px; border: 1px solid var(--border); }
+        .article-header { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 20px; margin-bottom: 30px; }
+        .article-header h1 { font-size: 28px; color: #fff; line-height: 1.4; margin-bottom: 15px; }
+        .meta-tags { display: flex; gap: 15px; color: var(--text-muted); font-size: 13px; }
+        .meta-tags span { display: flex; align-items: center; gap: 5px; }
+
+        .article-body { font-size: 16px; line-height: 1.8; color: var(--text-main); }
+        .article-body h2 { color: #fff; font-size: 22px; margin: 30px 0 15px 0; border-left: 4px solid #8b5cf6; padding-left: 10px; }
+        .article-body h3 { color: #e2e8f0; font-size: 18px; margin: 25px 0 10px 0; }
+        .article-body p { margin-bottom: 15px; }
+        .article-body strong { color: #fff; }
+        .article-body img { max-width: 100%; border-radius: 8px; margin: 20px 0; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        
+        .code-block { background: #1e1e2e; padding: 15px; border-radius: 8px; font-family: monospace; color: #a6accd; border: 1px solid rgba(255,255,255,0.05); overflow-x: auto; margin-bottom: 15px; }
+        
+        .inline-ad { margin: 40px 0; background: linear-gradient(135deg, rgba(244, 63, 94, 0.1), rgba(139, 92, 246, 0.1)); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 12px; padding: 25px; position: relative; overflow: hidden; }
+        .inline-ad::before { content: '赞助/推荐'; position: absolute; top: 0; right: 0; background: rgba(244, 63, 94, 0.2); color: #f43f5e; font-size: 11px; padding: 3px 10px; border-bottom-left-radius: 8px; }
+        .inline-ad h3 { color: #f43f5e; margin: 0 0 10px 0; display: flex; align-items: center; gap: 8px; font-size: 20px;}
+        .inline-ad p { color: #e2e8f0; font-size: 14px; margin-bottom: 15px; }
+        .inline-ad .discount-box { background: rgba(0,0,0,0.3); padding: 10px 15px; border-radius: 8px; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; border: 1px dashed #f43f5e;}
+        .inline-ad .btn-buy { background: #f43f5e; color: #fff; text-decoration: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; display: inline-block; transition: 0.3s; }
+        .inline-ad .btn-buy:hover { background: #e11d48; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(244, 63, 94, 0.4); }
+
+        .spider-web { margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .spider-web h3 { color: #fff; font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+        .spider-web-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .spider-web a { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; text-decoration: none; color: var(--text-muted); transition: 0.3s; border: 1px solid transparent; }
+        .spider-web a:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: var(--border); transform: translateX(5px); }
+        .spider-web i { color: #8b5cf6; font-size: 20px; }
+
+        @media (max-width: 768px) {
+            .dashboard-wrapper { flex-direction: column; }
+            .sidebar { width: 100% !important; position: static !important; height: auto !important; border-right: none !important; border-bottom: 1px solid var(--border); }
+            .main-content { overflow-y: visible !important; height: auto !important; }
+            .article-read-container { padding: 20px; margin: 15px; }
+            .topbar { padding: 15px; flex-direction: column; gap: 15px; align-items: flex-start; }
+            .spider-web-grid { grid-template-columns: 1fr; }
+            .article-header h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class='bx bx-globe'></i>
+                <span>AirportHub</span>
+            </div>
+            
+            <nav class="sidebar-nav" style="margin-top: 30px; padding: 0 15px;">
+                
+                <a href="index.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-data' style="font-size: 20px; color: inherit;"></i> 数据看板
+                </a>
+                <a href="articles.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); background: transparent; text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-news' style="font-size: 20px; color: inherit;"></i> 最新文章
+                </a>
+                <a href="tutorials.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-book-open' style="font-size: 20px; color: inherit;"></i> 客户端教程
+                </a>
+                <a href="apple_id.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-user-circle' style="font-size: 20px; color: inherit;"></i> 免费 Apple ID
+                </a>
+                <a href="free_nodes.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-wifi' style="font-size: 20px; color: inherit;"></i> 免费节点订阅
+                </a>
+                <a href="ai_tools.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-bot' style="font-size: 20px; color: #a855f7;"></i> AI 工具宝盒
+                </a>
+                <a href="ai_dev.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-code-alt' style="font-size: 20px; color: #8b5cf6;"></i> AI 编程开发工具
+                </a>
+                <a href="social_media.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-world' style="font-size: 20px; color: #0ea5e9;"></i> 海外社交媒体
+                </a>
+                <a href="ecommerce.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-store' style="font-size: 20px; color: #f59e0b;"></i> 跨境电商导航
+                </a>
+                <a href="crypto.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-bitcoin' style="font-size: 20px; color: #10b981;"></i> 数字货币导航
+                </a>
+                <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 15px 0;">
+                <a href="streaming.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-movie-play' style="font-size: 20px; color: #E50914;"></i> 全球流媒体影视
+                </a>
+                <a href="gaming.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-game' style="font-size: 20px; color: #10b981;"></i> 国际游戏与电竞
+                </a>
+                <a href="design.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-palette' style="font-size: 20px; color: #ec4899;"></i> 顶尖设计与二次元
+                </a>
+                <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 15px 0;">
+                <a href="about.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: 0.2s; margin-top: 5px;">
+                    <i class='bx bx-info-circle' style="font-size: 20px; color: #a855f7;"></i> 关于本站与防骗声明
+                </a>
+
+</nav>
+
+            <div class="filter-group" style="margin-top: 20px;">
+                <h3>节点筛选 & 参数</h3>
+                
+                <div class="filter-section">
+                    <h4>服务商类型 <i class='bx bx-chevron-up'></i></h4>
+                    <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="IPLC"> <span class="checkmark"></span> IPLC 专线</label>
+                    <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="IEPL" checked> <span class="checkmark"></span> IEPL 专线</label>
+                    <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="中转"> <span class="checkmark"></span> BGP 中转</label>
+                </div>
+
+                <div class="filter-section">
+                    <h4>支持协议 <i class='bx bx-chevron-up'></i></h4>
+                    <div class="grid-2-col">
+                        <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="Trojan"> <span class="checkmark"></span> Trojan</label>
+                        <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="Vless" checked> <span class="checkmark"></span> Vless</label>
+                        <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="SS"> <span class="checkmark"></span> SS/SSR</label>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h4>流媒体解锁 <i class='bx bx-chevron-up'></i></h4>
+                    <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="流媒体" checked> <span class="checkmark"></span> Netflix 完美解锁</label>
+                    <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="AI" checked> <span class="checkmark"></span> ChatGPT 原生IP</label>
+                    <label class="custom-checkbox"><input type="checkbox" class="filter-cb" value="海外" checked> <span class="checkmark"></span> TikTok 零封控</label>
+                </div>
+
+                <div class="filter-section">
+                    <h4>最大可接受价格 <i class='bx bx-chevron-up'></i></h4>
+                    <p class="price-label">最高: ¥<span id="price-val">150</span> / 月</p>
+                    <input type="range" id="priceFilter" min="9" max="150" value="150" class="slider">
+                </div>
+                
+                <div class="filter-section">
+                    <h4>运行状态 <i class='bx bx-chevron-up'></i></h4>
+                    <label class="custom-checkbox"><input type="checkbox" checked> <span class="checkmark"></span> 在线可用</label>
+                </div>
+            </div>
+        
+
+        <div class="ad-banner" style="margin-top: auto; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px; margin-left: 15px; margin-right: 15px; margin-bottom: 20px; border: 1px solid var(--border);">
+    <h4 style="color: #f43f5e; margin-bottom: 5px; font-size: 14px;">🔥 站长专属神仙机场</h4>
+    <p style="color: var(--text-muted); font-size: 12px; margin-bottom: 5px;">结账输入专属 8 折优惠码：<strong style="color: #f43f5e; user-select: all;">AMM</strong></p>
+    <p style="color: var(--text-muted); font-size: 12px; margin-bottom: 10px;">防跑路稳定首选，全网测速第一。</p>
+    <button onclick="window.location.href=\'index.html\'" style="width: 100%; padding: 8px; background: #f43f5e; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">立即抢购专属节点</button>
+</div>
+</aside>
+        
+        <main class="main-content" style="overflow-y: auto; flex-grow: 1;">
+            <header class="topbar">
+                <nav class="nav-links">
+                    <a href="articles.html" style="display: flex; align-items: center; gap: 5px;"><i class='bx bx-arrow-back'></i> 返回列表</a>
+                </nav>
+                <div class="top-right">
+                    <div class="search-bar">
+                        <i class='bx bx-search'></i>
+                        <input type="text" placeholder="搜索...">
+                    </div>
+                </div>
+            </header>
+
+            <div class="article-read-container">
+                
+                <div class="article-header">
+                    <h1>Netflix 严打跨区，国内用户如何用“原生IP”保住账号？2026终极自救指南</h1>
+                    <div class="meta-tags">
+                        <span><i class='bx bx-folder'></i> 客户端教程</span>
+                        <span><i class='bx bx-calendar'></i> 2026-06-16</span>
+                        <span><i class='bx bx-show'></i> 12,450 阅读</span>
+                        <span><i class='bx bx-time-five'></i> 预计阅读：5分钟</span>
+                    </div>
+                </div>
+
+                <div class="article-body">
+
+
+<p>最近，整个海外流媒体圈都在经历一场“大地震”。Netflix 自 2026 年 Q1 开始，启动了史上最严苛的“跨区封锁”算法。无数国内用户发现，自己花大价钱购买的 Netflix 会员，突然无法播放，或者只能看到满屏的“您似乎在使用解锁工具或代理”的提示。更可怕的是，大批账号被封禁，甚至波及到了合租车上的无辜用户。这场“清退风暴”的背后，是 Netflix 为了应对财报压力，强行推行“原生 IP 验证”和“支付地区绑定”策略。对于国内的重度影视迷、美剧发烧友来说，这无疑是一场噩梦。但别急，这场危机背后，也隐藏着一个全新的解决方案——我们需要的不再是“能翻墙”的普通工具，而是能提供“纯净原生IP”的高端网络加速服务。</p>
+
+<h2>一、深度解析：Netflix 为什么突然“六亲不认”？</h2>
+<p>很多人以为，Netflix 只是单纯地封杀 VPN。其实不然。2026 年的 Netflix 反作弊系统已经进化到了“第四代”。它不再仅仅检查你的 IP 是否在“黑名单”里，而是通过三重手段来判定你的“忠诚度”：</p>
+<ul>
+<li><strong>IP 原生性检测：</strong> 系统会扫描你的 IP 段是否属于数据中心（如 AWS、Google Cloud 或普通机房）。如果是，直接判定为代理，拒绝播放。只有属于家庭宽带、移动蜂窝网络的 IP，才被认定为“原生”。</li>
+<li><strong>DNS 与延迟定位：</strong> 它会对比你的 DNS 请求路径和实际网络延迟。如果你宣称在美国，但你的网络延迟却像在亚洲，系统会立即触发风控。</li>
+<li><strong>支付与地区一致性：</strong> 即使你解锁了，如果你的账号注册地是土耳其，而 IP 长期在美国，也会被标记为“高风险”，最终导致封号。</li>
+</ul>
+<p>这意味着，过去那种“随便找个节点就能看”的野路子彻底行不通了。现在，你需要的是真正的“原生家庭宽带 IP”，并且这些 IP 必须稳定、纯净，没有被 Netflix 标记过。</p>
+
+<h2>二、痛点直击：为什么你的“机场”突然失效了？</h2>
+<p>最近很多用户抱怨：“我买的机场节点明明还能用，为什么 Netflix 就是看不了？” 原因很简单：<strong>你的机场节点被“污染”了。</strong></p>
+<p>传统的“中转机场”为了追求速度，大量使用 BGP 中转线路，这导致所有用户的流量都从同一个出口 IP 出去。这种 IP 在 Netflix 眼里就是“众矢之的”，一旦被标记，整个 IP 段都会被封。而很多小机场为了省钱，用的还是被反复举报的机房IP，自然难逃一劫。</p>
+<p>想要在 2026 年继续畅享 4K HDR 的 Netflix，你必须做出改变：放弃那些“大路货”机场，转而投向拥有“原生家宽 IP”和“独享流媒体解锁”的高端机场。</p>
+
+<h2>三、终极解决方案：2026 年必选的两大“抗封锁”机场</h2>
+<p>经过对市面上数十家机场的深度测试（包括延迟、丢包率、Netflix 解锁能力、IP 纯净度），我们筛选出两款在“抗 Netflix 封锁”方面表现极其优异的机场。它们不仅速度快，更重要的是，能让你拥有“本地人”的体验，彻底告别封号风险。</p>
+
+<h3>1. 扬帆云：原生IP界的“劳斯莱斯”</h3>
+<p>如果你对画质和稳定性有极致追求，扬帆云是当之无愧的首选。这家机场最大的卖点在于其“全原生 IP 池”。它不依赖普通的机房 IP，而是斥巨资收购了大量海外家庭宽带的静态 IP 资源。这意味着，当你连接扬帆云时，Netflix 检测到的就是一个活生生的、正在美国或新加坡某户人家上网的真实 IP。它的解锁能力堪称恐怖：不仅支持 Netflix 全区的 4K 解锁，还完美支持 Disney+、HBO Max 以及最新的 AI 工具如 ChatGPT Plus。在延迟控制上，扬帆云通过独家研发的“游戏级专线”技术，将中转延迟压到了极低，看流媒体秒开，拖拽进度条毫无卡顿。对于担心账号安全的用户，扬帆云提供“独享节点”服务，一人一 IP，彻底杜绝被 Netflix 风控误杀的可能。如果你想在 2026 年保住你的 Netflix 账号，扬帆云是唯一让你感觉“像在本地”的机场。</p>
+
+<h3>2. 快狸：流媒体爱好者的“性价比之王”</h3>
+<p>如果你的预算有限，但又不想牺牲解锁能力，快狸绝对是一个惊喜。它走的是“精准打击”路线。虽然不像扬帆云那样拥有海量家宽 IP，但快狸专门针对 Netflix、Disney+ 和 TikTok 进行了深度优化。它的节点虽然数量不多，但每一个都是经过精挑细选的“流媒体专用节点”，并且承诺“定期更换 IP 段”，防止被 Netflix 列入黑名单。快狸最大的亮点在于其“智能分流”系统。你无需手动切换，它就能自动识别 Netflix 的流量，并将其导向最快的原生解锁线路，而将国内的视频流量直连，既保证了速度，又节省了流量。在 2026 年这个“严打期”，快狸凭借其“小而美”的策略，成为了很多学生党和轻度用户的首选。如果你需要一款既能看 Netflix，又能稳定访问 Google 和 ChatGPT，且价格亲民的机场，快狸不会让你失望。</p>
+
+<h2>四、写在最后：2026 年，网络工具必须“进化”</h2>
+<p>Netflix 的严打只是一个开始。随着 AI 大模型（如 2026 年最新的 GPT-5）和海外服务对“IP 纯净度”的要求越来越高，普通的中转机场将加速淘汰。未来的趋势必然是“原生化”和“独享化”。无论你是为了追剧、使用 AI 工具，还是为了跨境出海做业务，请务必选择像扬帆云和快狸这样，真正把“用户体验”和“网络安全”放在首位的服务商。这不仅仅是为了看一部电影，更是为了在这个数字化的时代，拥有一张畅通无阻的“网络通行证”。</p>
+                </div>
+
+                <!-- SEO 内部蜘蛛网系统 -->
+                <div class="spider-web">
+                    <h3><i class='bx bx-network-chart'></i> 猜你需要 / 拓展阅读</h3>
+                    <div class="spider-web-grid">
+
+                        <a href="review.html?id=%E6%89%AC%E5%B8%86%E4%BA%91">
+                            <i class='bx bx-star'></i>
+                            <span>🔥 深度评测：2026年 扬帆云 最新节点测速</span>
+                        </a>
+
+                        <a href="review.html?id=%E5%BF%AB%E7%8B%B8">
+                            <i class='bx bx-star'></i>
+                            <span>🔥 深度评测：2026年 快狸 最新节点测速</span>
+                        </a>
+
+                        <a href="review.html?id=%E6%B8%B8%E4%B9%90%E5%9B%AD%20VPN">
+                            <i class='bx bx-star'></i>
+                            <span>🔥 深度评测：2026年 游乐园 VPN 最新节点测速</span>
+                        </a>
+
+                        <a href="review.html?id=%E6%9E%81%E8%BF%9E%E4%BA%91">
+                            <i class='bx bx-star'></i>
+                            <span>🔥 深度评测：2026年 极连云 最新节点测速</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        
+            <!-- Site Footer -->
+            <footer class="site-footer" style="margin-top: 50px; padding: 40px 20px; border-top: 1px solid var(--border); background: var(--surface); text-align: center;">
+                <div style="max-width: 1000px; margin: 0 auto;">
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px; line-height: 1.6;">
+                        <strong>关于 AirportHub</strong><br>
+                        我们致力于提供最客观、中立的机场评测与科学上网技术指南。所有数据基于真实 7x24 小时节点网络监控与业务压测，为您过滤跑路机场，挑选高质量原生 IP 与网络专线。
+                    </p>
+                    
+                    <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                        <a href="sitemap.xml" target="_blank" style="color: #a855f7; text-decoration: none; font-size: 14px; transition: 0.2s;"><i class='bx bx-map-alt'></i> 网站地图 (Sitemap)</a>
+                        <a href="about.html" style="color: #a855f7; text-decoration: none; font-size: 14px; transition: 0.2s;"><i class='bx bx-shield-quarter'></i> 隐私政策</a>
+                        <a href="about.html" style="color: #a855f7; text-decoration: none; font-size: 14px; transition: 0.2s;"><i class='bx bx-error-circle'></i> 免责声明</a>
+                    </div>
+
+                    <div style="margin-bottom: 25px; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px dashed rgba(255,255,255,0.1);">
+                        <strong style="color: #fff; font-size: 14px; margin-bottom: 10px; display: block;"><i class='bx bx-link'></i> 友情链接</strong>
+                        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                            <!-- rel="noopener" prevents tab nabbing but does NOT add nofollow, so link juice/weight is shared with these sites -->
+                            <a href="https://clashwiki.cc/" target="_blank" rel="noopener" style="color: #3b82f6; text-decoration: none; font-size: 14px; transition: 0.2s; font-weight: 500;">机场推荐科学上网教程</a>
+                            <a href="https://jichangxuanze.com/" target="_blank" rel="noopener" style="color: #3b82f6; text-decoration: none; font-size: 14px; transition: 0.2s; font-weight: 500;">高性价比机场推荐指南</a>
+                        </div>
+                    </div>
+                    
+                    <p style="color: #6b7280; font-size: 13px; margin: 0;">
+                        &copy; 2026 AirportHub. All Rights Reserved. 本站内容仅供网络架构研究与学习，请严格遵守所在地法律法规。
+                    </p>
+                </div>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
